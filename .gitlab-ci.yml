@@ -1,0 +1,21 @@
+variables:
+    DIR_TO_TEST: src/Praktikum
+
+image:
+    name: "registry.code.fbi.h-da.de/ewa-praktikum/22ss-trapp/di4x-8/validator"
+    entrypoint: [""]
+
+stages:
+    - test
+
+testValidator:
+    stage: test
+    script:
+        - /opt/openjdk-13/bin/java -jar /src/node_modules/vnu-jar/build/dist/vnu.jar --verbose --skip-non-html $DIR_TO_TEST
+        
+
+testLinter:
+    stage: test
+    script:
+    #    - pwd
+        - python3 /src/main.py /builds/EWA-Praktikum/22SS-Trapp/Di4x-8/$DIR_TO_TEST
